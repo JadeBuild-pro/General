@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jadebuild-pro.github.io/General/sitemap.xml
+Sitemap: https://jade-brinkman.github.io/Portfolio-Jade-Build/sitemap.xml
