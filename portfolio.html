@@ -75,7 +75,10 @@
     <li><a href="contact.html" class="nav-cta" data-page="contact" data-i18n="nav_contact">Me contacter</a></li>
     <li><button class="lang-toggle" id="lang-toggle" aria-label="Language"><span data-lang="fr">FR</span><span data-lang="en">EN</span></button></li>
   </ul>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  <div class="nav-actions">
+    <button class="lang-toggle lang-toggle-bar" id="lang-toggle-bar" aria-label="Language"><span data-lang="fr">FR</span><span data-lang="en">EN</span></button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
 </nav>
 <nav class="nav-mobile" id="nav-mobile">
   <a href="index.html" data-page="index" data-i18n="nav_home">Accueil</a>
@@ -83,7 +86,6 @@
   <a href="portfolio.html" data-page="portfolio" data-i18n="nav_portfolio">Portfolio</a>
   <a href="about.html" data-page="about" data-i18n="nav_about">À propos</a>
   <a href="contact.html" class="nav-cta" data-page="contact" data-i18n="nav_contact">Me contacter</a>
-  <button class="lang-toggle" id="lang-toggle-mobile" aria-label="Language"><span data-lang="fr">FR</span><span data-lang="en">EN</span></button>
 </nav>
 
 <main>
@@ -328,8 +330,7 @@ const GENERIC = {
 };
 
 /* ============ LANGUE ============ */
-let lang = localStorage.getItem('jb-lang') || (navigator.language||'').startsWith('en') ? 'en' : 'fr';
-if (localStorage.getItem('jb-lang')) lang = localStorage.getItem('jb-lang');
+let lang = localStorage.getItem('jb-lang') || 'en';
 
 function t(key){ return I18N[lang][key] ?? I18N.fr[key] ?? key; }
 

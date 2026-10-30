@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>if((localStorage.getItem('jb-lang')||'en')==='en'){document.documentElement.style.visibility='hidden';setTimeout(function(){document.documentElement.style.visibility='visible'},1500)}</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="J9y97R47SFW1kmcWkkfjHWmDt0AaqFfByDzXTKF25wI" />
@@ -62,8 +63,9 @@
   .srv-grid{grid-template-columns:1fr}
   .testi-grid{grid-template-columns:1fr}
 }
-.lang-toggle{font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.08em;padding:0.4rem 0.85rem;border-radius:100px;border:1px solid var(--jade);background:transparent;color:var(--jade);cursor:pointer;margin-left:0.5rem}
-.lang-toggle:hover{background:var(--jade);color:white}
+.lang-toggle{display:inline-flex;align-items:center;gap:0.25rem;border:1px solid var(--border2);border-radius:100px;padding:0.3rem 0.2rem;background:transparent;cursor:pointer;font-family:var(--sans);font-size:0.72rem;font-weight:600;margin-left:0.75rem}
+.lang-toggle span{padding:0.25rem 0.6rem;border-radius:100px;color:var(--ink4);transition:all 0.2s}
+.lang-toggle span.on{background:var(--jade);color:white}
 </style>
 </head>
 <body>
@@ -76,9 +78,12 @@
     <li><a href="portfolio.html" data-page="portfolio">Portfolio</a></li>
     <li><a href="about.html" data-page="about">À propos</a></li>
     <li><a href="contact.html" class="nav-cta" data-page="contact">Me contacter</a></li>
-    <li><button class="lang-toggle" id="lang-toggle">EN</button></li>
+    <li><button class="lang-toggle" id="lang-toggle" aria-label="Language"><span data-lang="fr">FR</span><span data-lang="en">EN</span></button></li>
   </ul>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  <div class="nav-actions">
+    <button class="lang-toggle lang-toggle-bar" id="lang-toggle-bar" aria-label="Language"><span data-lang="fr">FR</span><span data-lang="en">EN</span></button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
 </nav>
 <nav class="nav-mobile" id="nav-mobile">
   <a href="index.html" data-page="index">Accueil</a>
@@ -86,7 +91,6 @@
   <a href="portfolio.html" data-page="portfolio">Portfolio</a>
   <a href="about.html" data-page="about">À propos</a>
   <a href="contact.html" class="nav-cta" data-page="contact">Me contacter</a>
-  <button class="lang-toggle" id="lang-toggle-m">EN</button>
 </nav>
 
 <main>
@@ -460,7 +464,7 @@ function chatNext(step){
   if(step===1){
     const n=document.getElementById('chat-name').value.trim();
     if(!n)return;
-    document.getElementById('msg2').textContent='Bonjour '+n.split(' ')[0]+' ! Quel est votre adresse email ?';
+    document.getElementById('msg2').textContent=(current==='en'?'Hello '+n.split(' ')[0]+'! What\'s your email address?':'Bonjour '+n.split(' ')[0]+' ! Quel est votre adresse email ?');
     document.getElementById('dp2').classList.add('done');
   } else if(step===2){
     const e=document.getElementById('chat-email').value.trim();
@@ -485,7 +489,7 @@ function chatSend(){
   const msg=document.getElementById('chat-msg').value.trim();
   if(!msg)return;
   const btn=document.querySelector('#step4 .chat-send');
-  btn.disabled=true;btn.textContent='Envoi...';
+  btn.disabled=true;btn.textContent=(current==='en'?'Sending...':'Envoi...');
   emailjs.send('service_5veayvj','template_eu5fxvb',{
     subject:subject+' — '+name,
     from_name:name,
@@ -498,7 +502,7 @@ function chatSend(){
     document.getElementById('step5').classList.add('active');
   }).catch(()=>{
     btn.disabled=false;btn.textContent='Envoyer le message →';
-    alert('Une erreur est survenue. Merci de réessayer.');
+    alert(current==='en'?'An error occurred. Please try again.':'Une erreur est survenue. Merci de réessayer.');
   });
 }
 // Smooth anchor scroll
@@ -541,26 +545,64 @@ const PAIRS = {
 "Site vitrine avec prise de RDV en ligne, présentation des accompagnements et témoignages clients.":"Showcase site with online booking, presentation of services and client testimonials.",
 "Site institutionnel WordPress avec gestion multi-branches, galerie photo et espace documentaire.":"WordPress institutional site with multi-branch management, photo gallery and document space.",
 "Témoignages":"Testimonials","Ils m'ont":"They","fait confiance":"trusted me",
-"Sécurité":"Security","Accessibilité":"Accessibility"
+"Sécurité":"Security","Accessibilité":"Accessibility",
+"Sophrologue ·":"Sophrologist ·","Responsable ·":"Manager ·",
+"Votre projet mérite un site":"Your project deserves a site","à la hauteur":"that lives up to it",
+"Devis gratuit, réponse sous 48h. Disponible pour de nouveaux projets.":"Free quote, reply within 48h. Available for new projects.",
+"Démarrer mon projet":"Start my project","Sites vitrine":"Showcase sites",
+"Conception et développement de sites web sur mesure. Disponible partout dans le monde.":"Custom website design and development. Available worldwide.",
+"Répond généralement sous 24h":"Usually replies within 24h",
+"Bonjour ! Je suis Jade.":"Hello! I'm Jade.","Comment vous appelez-vous ?":"What's your name?",
+"Quel est votre adresse email ?":"What's your email address?","Veuillez entrer une adresse email valide.":"Please enter a valid email address.",
+"Quel est le sujet de votre demande ?":"What is your request about?","Sélectionner un sujet...":"Select a topic...",
+"Demande de devis":"Quote request","Maintenance de site":"Site maintenance","Refonte de site":"Site redesign",
+"Question technique":"Technical question","Partenariat":"Partnership","Autre":"Other",
+"Décrivez votre projet ou votre question.":"Describe your project or question.",
+"Continuer →":"Continue →","Envoyer le message →":"Send message →",
+"Message envoyé !":"Message sent!","Je vous répondrai dans les plus brefs délais.":"I'll get back to you as soon as possible."
 };
-const REV = {}; for (const k in PAIRS) REV[PAIRS[k]] = k;
+const STARTS = [
+ ["\u201cJade a su traduire", "\u201cJade perfectly captured the world of SofrÉkili and turned it into something warm and professional. The site is beautiful, fast, and my clients often tell me they booked an appointment thanks to it. Really high-quality work, and someone who listens from the first exchange to the last.\u201d"],
+ ["\u201cNotre groupe scout", "\u201cOur scout group needed a clear site, accessible to families and easy to manage. Jade delivered exactly that, on time, with a real understanding of our non-profit needs. The photo gallery and document space are especially appreciated by parents. We recommend her without hesitation!\u201d"]
+];
+const PARTIAL = [["Auto-entrepreneuse enregistrée","Registered sole trader"]];
+const PLACEHOLDERS = {"Votre prénom et nom":"Your first and last name","Votre message...":"Your message..."};
+const ORIG = new Map();      // texte français d'origine, par noeud
+const TITLE_FR = document.title, TITLE_EN = "Jade Build — Custom website design";
+
+function toEnglish(n){
+  const raw = n.nodeValue, t = raw.trim();
+  let out = null;
+  if (PAIRS[t]) out = raw.replace(t, PAIRS[t]);
+  else {
+    const st = STARTS.find(x => t.startsWith(x[0]));
+    if (st) out = raw.replace(t, st[1]);
+    else { const pt = PARTIAL.find(x => raw.includes(x[0])); if (pt) out = raw.replace(pt[0], pt[1]); }
+  }
+  if (out !== null) { ORIG.set(n, raw); n.nodeValue = out; }
+}
 
 function translatePage(lang){
-  const map = lang === 'en' ? PAIRS : REV;
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
   nodes.forEach(n => {
     if (!n.parentNode || /SCRIPT|STYLE/.test(n.parentNode.tagName)) return;
-    const t = n.nodeValue.trim();
-    if (t && map[t]) n.nodeValue = n.nodeValue.replace(t, map[t]);
+    if (lang === 'en') { if (!ORIG.has(n)) toEnglish(n); }
+    else if (ORIG.has(n)) { n.nodeValue = ORIG.get(n); ORIG.delete(n); }
   });
+  document.querySelectorAll('[placeholder]').forEach(el => {
+    if (lang === 'en' && PLACEHOLDERS[el.placeholder]) { el.dataset.ph = el.placeholder; el.placeholder = PLACEHOLDERS[el.placeholder]; }
+    else if (lang === 'fr' && el.dataset.ph) { el.placeholder = el.dataset.ph; delete el.dataset.ph; }
+  });
+  document.title = lang === 'en' ? TITLE_EN : TITLE_FR;
   document.documentElement.lang = lang;
-  document.querySelectorAll('#lang-toggle, #lang-toggle-m').forEach(b => b.textContent = lang === 'en' ? 'FR' : 'EN');
+  document.querySelectorAll('.lang-toggle span').forEach(sp => sp.classList.toggle('on', sp.dataset.lang === lang));
   localStorage.setItem('jb-lang', lang);
 }
-let current = localStorage.getItem('jb-lang') || 'fr';
-if (current === 'en') translatePage('en');
-document.querySelectorAll('#lang-toggle, #lang-toggle-m').forEach(b => b.addEventListener('click', () => {
+let current = localStorage.getItem('jb-lang') || 'en';
+translatePage(current);
+document.documentElement.style.visibility = 'visible';
+document.querySelectorAll('#lang-toggle, #lang-toggle-bar').forEach(b => b.addEventListener('click', () => {
   current = current === 'fr' ? 'en' : 'fr';
   translatePage(current);
 }));

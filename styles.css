@@ -255,3 +255,9 @@ footer ul li a:hover{color:var(--jade-xl)}
   #cursor,
   #cursor-ring  { display:none }
 }
+
+.nav-actions{display:flex;align-items:center;gap:0.5rem}
+.lang-toggle-bar{display:none}
+@media(max-width:768px){
+  .lang-toggle-bar{display:inline-flex;align-items:center;justify-content:center;margin:0}
+}
