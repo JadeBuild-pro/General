@@ -71,7 +71,7 @@
   <a href="index.html" class="nav-logo"><img src="logo.png" alt="Jade Build logo"><span class="nav-brand">Jade Build</span></a>
   <ul class="nav-links">
     <li><a href="index.html" data-page="index">Accueil</a></li>
-    <li><a href="services.html" data-page="services">Services</a></li>
+    <li><a href="services.html" data-page="services">Services</a><a href="data-services.html" data-page="data-services">Data &amp; BI</a></li>
     <li><a href="portfolio.html" data-page="portfolio">Portfolio</a></li>
     <li><a href="about.html" data-page="about">À propos</a></li>
     <li><a href="contact.html" class="nav-cta" data-page="contact">Me contacter</a></li>
@@ -156,7 +156,7 @@
       <h4>Navigation</h4>
       <ul>
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Services</a></li><li><a href="data-services.html">Data &amp; BI</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="about.html">À propos</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -302,8 +302,8 @@ revs.forEach(r=>obs.observe(r));
 const chatBtn=document.getElementById('chat-btn');
 const chatBubble=document.getElementById('chat-bubble');
 const chatClose=document.getElementById('chat-close');
-chatBtn.addEventListener('click',()=>chatBubble.classList.toggle('open'));
-chatClose.addEventListener('click',()=>chatBubble.classList.remove('open'));
+if(chatBtn&&chatBubble)chatBtn.addEventListener('click',()=>chatBubble.classList.toggle('open'));
+if(chatClose&&chatBubble)chatClose.addEventListener('click',()=>chatBubble.classList.remove('open'));
 
 function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim())}
 

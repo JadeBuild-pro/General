@@ -36,5 +36,8 @@
 </div>
 </main>
 <footer><div class="footer-inner"><div><a href="index.html" class="footer-brand"><img src="logo.png" alt="Jade Build logo"><span>Jade Build</span></a><p>Custom website design and development. Based in France, working worldwide.</p></div><div><h4>Legal / Mentions légales</h4><ul><li><a href="legal-notice.html">Legal notice</a></li><li><a href="privacy-policy.html">Privacy policy</a></li><li><a href="contact.html">Contact</a></li></ul></div></div></footer>
+<div id="cursor" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div>
+<style>#cursor,#cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;border-radius:50%;transform:translate(-50%,-50%)}#cursor{width:7px;height:7px;background:var(--jade);mix-blend-mode:multiply}#cursor-ring{width:30px;height:30px;border:1px solid var(--jade);transition:width .2s,height .2s,border-color .2s}body.cursor-hover #cursor-ring{width:48px;height:48px} @media(hover:none){#cursor,#cursor-ring{display:none}}</style>
+<script>(()=>{const c=document.getElementById('cursor'),r=document.getElementById('cursor-ring');if(!c||!r||matchMedia('(hover:none)').matches)return;let x=0,y=0,a=0,b=0;document.addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;c.style.left=x+'px';c.style.top=y+'px'});(function tick(){a+=(x-a)*.18;b+=(y-b)*.18;r.style.left=a+'px';r.style.top=b+'px';requestAnimationFrame(tick)})();document.querySelectorAll('a,button').forEach(e=>{e.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));e.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'))})})();</script>
 <script src="site.js" defer></script>
 </body></html>

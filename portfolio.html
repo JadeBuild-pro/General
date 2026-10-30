@@ -260,7 +260,7 @@ const I18N = {
     s1:"Demande de devis", s2:"Maintenance de site", s3:"Refonte de site", s4:"Question technique", s5:"Partenariat", s6:"Autre",
     c4:"Décrivez votre projet ou votre question.", c4_ph:"Votre message...", c_next:"Continuer &rarr;", c_send:"Envoyer le message &rarr;",
     c5_t:"Message envoyé !", c5_d:"Je vous répondrai dans les plus brefs délais.",
-    btn_visit:"Voir le site", visit_live:"Voir le site live", coming_t:"Votre projet ici", coming_d:"Vous souhaitez un site vitrine, e-commerce ou portfolio ?", coming_b:"Parlons-en",
+    btn_visit:"Voir le site", coming_t:"Votre projet ici", coming_d:"Vous souhaitez un site vitrine, e-commerce ou portfolio ?", coming_b:"Parlons-en",
     soon_t:"Nouveaux projets à venir", soon_d:"D'autres réalisations seront ajoutées prochainement — restaurants, portfolios, e-commerce...",
     lang_label:"Langue"
   },
@@ -282,7 +282,7 @@ const I18N = {
     s1:"Quote request", s2:"Site maintenance", s3:"Site redesign", s4:"Technical question", s5:"Partnership", s6:"Other",
     c4:"Describe your project or question.", c4_ph:"Your message...", c_next:"Continue &rarr;", c_send:"Send message &rarr;",
     c5_t:"Message sent!", c5_d:"I'll get back to you as soon as possible.",
-    btn_visit:"View site", visit_live:"View live site", coming_t:"Your project here", coming_d:"Looking for a showcase site, e-commerce or portfolio?", coming_b:"Let's talk",
+    btn_visit:"View site", coming_t:"Your project here", coming_d:"Looking for a showcase site, e-commerce or portfolio?", coming_b:"Let's talk",
     soon_t:"More projects coming", soon_d:"More work will be added soon — restaurants, portfolios, e-commerce...",
     lang_label:"Language"
   }
@@ -391,7 +391,7 @@ function projectHTML(p, i){
       </div>
       <div class="proj-footer">
         <div class="tags">${stack.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
-        <a href="${p.url}" target="_blank" rel="noopener" class="proj-link">${t('visit_live')} <i class="fa-solid fa-arrow-right" style="font-size:0.65rem"></i></a>
+
       </div>
     </div>
   </div>`;
@@ -469,7 +469,7 @@ if(typeof emailjs==='undefined'){
 const chatBtn=document.getElementById('chat-btn');
 const chatBubble=document.getElementById('chat-bubble');
 document.getElementById('chat-close').addEventListener('click',()=>chatBubble.classList.remove('open'));
-chatBtn.addEventListener('click',()=>chatBubble.classList.toggle('open'));
+if(chatBtn&&chatBubble)chatBtn.addEventListener('click',()=>chatBubble.classList.toggle('open'));
 
 function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim())}
 

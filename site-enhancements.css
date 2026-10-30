@@ -27,3 +27,6 @@
 
 .mobile-lang-toggle{display:none;margin:.5rem 0 0 auto}.mobile-lang-toggle span{display:inline-block}
 @media(max-width:768px){.mobile-lang-toggle{display:inline-flex}.nav-actions{gap:.5rem}.footer-legal{justify-content:center}}
+
+/* Shared custom cursor */
+#cursor,#cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;border-radius:50%;transform:translate(-50%,-50%)}#cursor{width:7px;height:7px;background:var(--jade)}#cursor-ring{width:30px;height:30px;border:1px solid var(--jade);transition:width .2s,height .2s}body.cursor-hover #cursor-ring{width:48px;height:48px}@media(hover:none){#cursor,#cursor-ring{display:none}}
