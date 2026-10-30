@@ -76,6 +76,8 @@
 @media(max-width:600px){
   .section [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr !important}
 }
+.cur-btn{font-family:var(--sans);font-size:0.78rem;font-weight:500;padding:0.45rem 1.1rem;border-radius:100px;border:1px solid var(--border2);background:transparent;color:var(--ink4);cursor:pointer}
+.cur-btn.active,.cur-btn:hover{background:var(--jade);color:white;border-color:var(--jade)}
 </style>
 </head>
 <body>
@@ -250,15 +252,22 @@
     <div style="text-align:center;max-width:520px;margin:0 auto 3rem">
       <div class="eyebrow reveal">Tarifs</div>
       <h2 class="reveal d1">Des formules <em>claires</em></h2>
-      <p class="lead reveal d2" style="margin-top:0.75rem;text-align:center">Un site vitrine complet avec les options que vous choisissez. Devis gratuit, sans engagement.</p>
+      <p class="lead reveal d2" style="margin-top:0.75rem;text-align:center">Un site de base sur mesure, puis les options que vous choisissez. Devis gratuit, sans engagement.</p>
     </div>
+
+    <div class="reveal" style="display:flex;justify-content:center;gap:0.5rem;margin-bottom:2rem">
+      <button class="cur-btn active" data-cur="EUR">€ EUR</button>
+      <button class="cur-btn" data-cur="USD">$ USD</button>
+      <button class="cur-btn" data-cur="AUD">A$ AUD</button>
+    </div>
+    <p style="text-align:center;font-size:0.72rem;color:var(--ink4);margin:-1.25rem 0 2rem">Prix indicatifs en USD et AUD, convertis depuis l'euro.</p>
 
     <!-- Formule principale -->
     <div class="reveal d1" style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r2);padding:2.5rem;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
       <div>
         <div class="eyebrow" style="margin-bottom:0.75rem">Formule de base</div>
-        <h3 style="font-family:var(--serif);font-size:1.6rem;color:var(--ink);margin-bottom:0.5rem">Site vitrine de lancement</h3>
-        <div style="font-family:var(--serif);font-size:3rem;color:var(--jade);line-height:1;margin:0.75rem 0">350<span style="font-size:1.2rem;color:var(--ink4)"> €</span></div>
+        <h3 style="font-family:var(--serif);font-size:1.6rem;color:var(--ink);margin-bottom:0.5rem">Site de base</h3>
+        <div style="font-family:var(--serif);font-size:3rem;color:var(--jade);line-height:1;margin:0.75rem 0"><span class="pz" data-eur="350">350 €</span></div>
         <p style="font-size:0.85rem;color:var(--ink3);font-weight:300;line-height:1.7;margin-bottom:1.5rem">Site HTML/CSS sur mesure, livré en 5 à 7 jours. Pas un template générique : chaque site est conçu spécifiquement pour votre activité.</p>
         <a href="contact.html" class="btn btn-primary">Démarrer mon projet <i class="fa-solid fa-arrow-right" style="font-size:0.75rem"></i></a>
       </div>
@@ -287,7 +296,7 @@
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r);padding:1.25rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
             <i class="fa-solid fa-magnifying-glass" style="color:var(--jade);font-size:1rem"></i>
-            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)">+25 <span style="font-size:0.85rem">€</span></span>
+            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)"><span class="pz" data-eur="25" data-prefix="+">+25 €</span></span>
           </div>
           <strong style="display:block;font-size:0.875rem;color:var(--ink);margin-bottom:0.25rem">SEO local</strong>
           <p style="font-size:0.78rem;color:var(--ink4);font-weight:300;line-height:1.55">Optimisation pour apparaître dans les recherches locales de votre ville.</p>
@@ -295,7 +304,7 @@
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r);padding:1.25rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
             <i class="fa-brands fa-google" style="color:var(--jade);font-size:1rem"></i>
-            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)">+25 <span style="font-size:0.85rem">€</span></span>
+            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)"><span class="pz" data-eur="25" data-prefix="+">+25 €</span></span>
           </div>
           <strong style="display:block;font-size:0.875rem;color:var(--ink);margin-bottom:0.25rem">Fiche Google My Business</strong>
           <p style="font-size:0.78rem;color:var(--ink4);font-weight:300;line-height:1.55">Création et optimisation de votre fiche Google pour une visibilité locale immédiate.</p>
@@ -303,7 +312,7 @@
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r);padding:1.25rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
             <i class="fa-solid fa-calendar-check" style="color:var(--jade);font-size:1rem"></i>
-            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)">+25 <span style="font-size:0.85rem">€</span></span>
+            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)"><span class="pz" data-eur="25" data-prefix="+">+25 €</span></span>
           </div>
           <strong style="display:block;font-size:0.875rem;color:var(--ink);margin-bottom:0.25rem">Prise de RDV en ligne</strong>
           <p style="font-size:0.78rem;color:var(--ink4);font-weight:300;line-height:1.55">Intégration d'un système de réservation directement sur votre site (Calendly ou similaire).</p>
@@ -311,7 +320,7 @@
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r);padding:1.25rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
             <i class="fa-solid fa-pen-to-square" style="color:var(--jade);font-size:1rem"></i>
-            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)">+25 <span style="font-size:0.85rem">€</span></span>
+            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)"><span class="pz" data-eur="25" data-prefix="+">+25 €</span></span>
           </div>
           <strong style="display:block;font-size:0.875rem;color:var(--ink);margin-bottom:0.25rem">Blog (3 articles)</strong>
           <p style="font-size:0.78rem;color:var(--ink4);font-weight:300;line-height:1.55">Section blog avec 3 articles rédigés, utile pour votre référencement et votre crédibilité.</p>
@@ -319,7 +328,7 @@
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r);padding:1.25rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
             <i class="fa-brands fa-instagram" style="color:var(--jade);font-size:1rem"></i>
-            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)">+25 <span style="font-size:0.85rem">€</span></span>
+            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)"><span class="pz" data-eur="25" data-prefix="+">+25 €</span></span>
           </div>
           <strong style="display:block;font-size:0.875rem;color:var(--ink);margin-bottom:0.25rem">Connexion réseaux sociaux</strong>
           <p style="font-size:0.78rem;color:var(--ink4);font-weight:300;line-height:1.55">Intégration de vos liens Instagram, Facebook, LinkedIn directement sur le site.</p>
@@ -327,7 +336,7 @@
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r);padding:1.25rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
             <i class="fa-solid fa-globe" style="color:var(--jade);font-size:1rem"></i>
-            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)">+40 <span style="font-size:0.85rem">€</span></span>
+            <span style="font-family:var(--serif);font-size:1.4rem;color:var(--jade)"><span class="pz" data-eur="40" data-prefix="+">+40 €</span></span>
           </div>
           <strong style="display:block;font-size:0.875rem;color:var(--ink);margin-bottom:0.25rem">Nom de domaine personnalisé</strong>
           <p style="font-size:0.78rem;color:var(--ink4);font-weight:300;line-height:1.55">Enregistrement et configuration d'un nom de domaine à votre nom (ex : votreactivite.fr).</p>
@@ -560,5 +569,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 }));
 </script>
 
+
+<script>
+const RATES = { EUR:{r:1,s:'€'}, USD:{r:1.08,s:'$'}, AUD:{r:1.70,s:'A$'} };
+function setCurrency(c){
+  document.querySelectorAll('.pz').forEach(el=>{
+    const v = Math.round(el.dataset.eur * RATES[c].r / 5) * 5;
+    const pre = el.dataset.prefix || '';
+    el.textContent = c === 'EUR' ? pre + v + ' €' : pre + RATES[c].s + v;
+  });
+  document.querySelectorAll('.cur-btn').forEach(b=>b.classList.toggle('active', b.dataset.cur===c));
+}
+document.querySelectorAll('.cur-btn').forEach(b=>b.addEventListener('click',()=>setCurrency(b.dataset.cur)));
+</script>
 </body>
 </html>

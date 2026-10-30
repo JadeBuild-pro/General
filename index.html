@@ -28,7 +28,6 @@
 @keyframes drift{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:0.4}90%{opacity:0.4}100%{transform:translateY(-120vh) translateX(40px);opacity:0}}
 .hero-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;width:100%;position:relative;z-index:1}
 .hero-tagline{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--jade);display:flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem}
-.hero-tagline::before{content:'';width:20px;height:1.5px;background:var(--jade)}
 .hero h1{margin-bottom:1.5rem}
 .hero-sub{font-size:1rem;color:var(--ink3);line-height:1.8;font-weight:300;margin-bottom:2.5rem;max-width:460px}
 .hero-actions{display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center}
@@ -39,7 +38,6 @@
 .hv-card{background:var(--white);border:1px solid var(--border2);border-radius:20px;padding:1.5rem;box-shadow:0 4px 40px rgba(0,0,0,0.07);animation:floatY 6s ease-in-out infinite}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .hv-kpi-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--jade);margin-bottom:1rem;display:flex;align-items:center;gap:0.4rem}
-.hv-kpi-label::before{content:'';width:14px;height:1.5px;background:var(--jade)}
 .hv-title{font-family:var(--serif);font-size:1.25rem;color:var(--ink);margin-bottom:0.25rem}
 .hv-desc{font-size:0.8rem;color:var(--ink4);margin-bottom:1.25rem;font-weight:300}
 .hv-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
@@ -64,6 +62,8 @@
   .srv-grid{grid-template-columns:1fr}
   .testi-grid{grid-template-columns:1fr}
 }
+.lang-toggle{font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.08em;padding:0.4rem 0.85rem;border-radius:100px;border:1px solid var(--jade);background:transparent;color:var(--jade);cursor:pointer;margin-left:0.5rem}
+.lang-toggle:hover{background:var(--jade);color:white}
 </style>
 </head>
 <body>
@@ -76,6 +76,7 @@
     <li><a href="portfolio.html" data-page="portfolio">Portfolio</a></li>
     <li><a href="about.html" data-page="about">À propos</a></li>
     <li><a href="contact.html" class="nav-cta" data-page="contact">Me contacter</a></li>
+    <li><button class="lang-toggle" id="lang-toggle">EN</button></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
 </nav>
@@ -85,6 +86,7 @@
   <a href="portfolio.html" data-page="portfolio">Portfolio</a>
   <a href="about.html" data-page="about">À propos</a>
   <a href="contact.html" class="nav-cta" data-page="contact">Me contacter</a>
+  <button class="lang-toggle" id="lang-toggle-m">EN</button>
 </nav>
 
 <main>
@@ -119,7 +121,6 @@
       </div>
     </div>
   </div>
-  <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Découvrir</span></div>
 </section>
 
 <div class="marquee-wrap reveal">
@@ -514,6 +515,56 @@ for(let i=0;i<18;i++){const d=document.createElement('div');d.className='particl
 // Fix srv-grid responsive
 function fixGrid(){const g=document.querySelector('.srv-grid');if(!g)return;if(window.innerWidth<600){g.style.gridTemplateColumns='1fr'}else if(window.innerWidth<900){g.style.gridTemplateColumns='1fr 1fr'}else{g.style.gridTemplateColumns='repeat(3,1fr)'}}
 fixGrid();window.addEventListener('resize',fixGrid);
+</script>
+
+<script>
+const PAIRS = {
+"Accueil":"Home","Services":"Services","Portfolio":"Portfolio","À propos":"About","Me contacter":"Contact me",
+"Création web":"Web creation","Des sites qui":"Websites that","convertissent":"convert","vos visiteurs":"your visitors",
+"Je conçois des expériences web sur mesure alliant design épuré, performance technique et résultats mesurables pour votre activité.":"I design custom web experiences combining clean design, technical performance and measurable results for your business.",
+"Voir mes réalisations":"View my work","Discutons de votre projet":"Let's discuss your project",
+"Quelques chiffres":"Key figures","Développeuse web · Data Analyst":"Web developer · Data Analyst",
+"Ans expérience data":"Years in data","Ans en programmation":"Years of programming","Data & IA":"Data & AI",
+"Paris · Disponible worldwide":"Paris · Available worldwide",
+"Ce que je propose":"What I offer","web complets":"complete web","Services":"Services",
+"De la maquette au déploiement, je prends en charge chaque étape avec attention et précision.":"From mock-up to launch, I handle every step with care and precision.",
+"Maquettes sur mesure, identité visuelle cohérente, expérience utilisateur pensée pour convertir.":"Custom mock-ups, consistent visual identity, user experience designed to convert.",
+"Développement web":"Web development","Sites statiques ou WordPress codés proprement, rapides et maintenables.":"Static or WordPress sites, cleanly coded, fast and easy to maintain.",
+"E-commerce":"E-commerce","Boutiques clés en main avec WooCommerce ou Shopify — paiement, stock, commandes.":"Turnkey shops with WooCommerce or Shopify — payments, stock, orders.",
+"SEO & Analytics":"SEO & Analytics","Optimisation Google, mise en place des outils de mesure, suivi de performance.":"Google optimisation, measurement tools setup, performance tracking.",
+"Chaque site est conçu pour tous les appareils — smartphones, tablettes, desktops.":"Every site is designed for all devices — smartphones, tablets, desktops.",
+"Maintenance":"Maintenance","Suivi mensuel, mises à jour, sauvegardes, évolutions selon vos besoins.":"Monthly follow-up, updates, backups and changes as needed.",
+"Voir tous les services":"See all services",
+"Ans d'expérience data":"Years of data experience",
+"Réalisations":"Projects","Mes derniers":"My latest","projets":"projects","Voir tout le portfolio":"See full portfolio",
+"Site vitrine · Bien-être":"Showcase site · Wellness","Site associatif · Scoutisme":"Non-profit site · Scouting",
+"Voir le site":"View site","SofrÉkili — Sophrologue":"SofrÉkili — Sophrologist","EEDF Lapérouse — Groupe scout":"EEDF Lapérouse — Scout group",
+"Site vitrine avec prise de RDV en ligne, présentation des accompagnements et témoignages clients.":"Showcase site with online booking, presentation of services and client testimonials.",
+"Site institutionnel WordPress avec gestion multi-branches, galerie photo et espace documentaire.":"WordPress institutional site with multi-branch management, photo gallery and document space.",
+"Témoignages":"Testimonials","Ils m'ont":"They","fait confiance":"trusted me",
+"Sécurité":"Security","Accessibilité":"Accessibility"
+};
+const REV = {}; for (const k in PAIRS) REV[PAIRS[k]] = k;
+
+function translatePage(lang){
+  const map = lang === 'en' ? PAIRS : REV;
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n => {
+    if (!n.parentNode || /SCRIPT|STYLE/.test(n.parentNode.tagName)) return;
+    const t = n.nodeValue.trim();
+    if (t && map[t]) n.nodeValue = n.nodeValue.replace(t, map[t]);
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('#lang-toggle, #lang-toggle-m').forEach(b => b.textContent = lang === 'en' ? 'FR' : 'EN');
+  localStorage.setItem('jb-lang', lang);
+}
+let current = localStorage.getItem('jb-lang') || 'fr';
+if (current === 'en') translatePage('en');
+document.querySelectorAll('#lang-toggle, #lang-toggle-m').forEach(b => b.addEventListener('click', () => {
+  current = current === 'fr' ? 'en' : 'fr';
+  translatePage(current);
+}));
 </script>
 </body>
 </html>
